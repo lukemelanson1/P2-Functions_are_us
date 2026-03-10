@@ -8,10 +8,10 @@ def getName() :
 
 def menuDisplay():
     while True:
-        print("---Menu---")
+        print("\n---Menu---")
         print("1. Display and pick teams")
         print("2. Play a game")
-        print("Display final results")
+        print("3. Display final results")
 
         try:
             choice = int(input("Enter your choice (1-3): "))
