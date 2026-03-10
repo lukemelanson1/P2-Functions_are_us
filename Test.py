@@ -18,7 +18,7 @@ def getName():
 def menuDisplay():
     while True:
         # display the menu options
-        print("\n---Menu---")
+        print("---Menu---")
         print("1. Display and pick teams")
         print("2. Play a game")
         print("3. Display final results")
@@ -31,7 +31,7 @@ def menuDisplay():
             else:
                 print("Please enter a number between 1 and 3.")
         except ValueError:
-            print("\nInvalid input. Please enter a number 1-3.")
+            print("Invalid input. Please enter a number 1-3.")
 
 # Luke Melanson
 
@@ -104,13 +104,17 @@ def display_record(sPlayerName, sHomeTeam, dctTeamWL, iTotalWinsHome, iTotalLoss
     print(f"\nFinal season record: {iTotalWinsHome} - {iTotalLossHome}")
 
     # calculate win percentage and display performance message
-    fWinPercent = iTotalWinsHome / iNumGames
-    if fWinPercent >= 0.75:
-        print("Qualified for the NCAA Soccer Tournament!")
-    elif fWinPercent >= 0.5:
-        print("You had a good season.")
-    else:
-        print("Your team needs to practice!")
+    try:
+        if iNumGames > 0:
+            fWinPercent = iTotalWinsHome / iNumGames
+            if fWinPercent >= 0.75:
+                print("Qualified for the NCAA Soccer Tournament!")
+            elif fWinPercent >= 0.5:
+                print("You had a good season.")
+            else:
+                print("Your team needs to practice!")
+    except ZeroDivisionError:
+        print("No games played, so no performance to evaluate.")
 
     # closing message using player name
     print(f"\nThanks for playing, {sPlayerName}!")
@@ -130,8 +134,7 @@ dctTeamWL = {"Won Against": [], "Lost Against": []}
 iNumGames = 0
 
 # main loop - keeps running until the player chooses to see final results
-bContinue = True
-while bContinue == True:
+while True:
     user_choice = menuDisplay()
 
     # option 1 - pick home team and opponent
@@ -164,4 +167,4 @@ while bContinue == True:
     # option 3 - display final results and end the program
     elif user_choice == 3:
         display_record(sPlayerName, sHomeTeam, dctTeamWL, iTotalWinsHome, iTotalLossHome, iNumGames)
-        bContinue == False
+        break
