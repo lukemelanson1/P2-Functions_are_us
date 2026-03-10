@@ -42,11 +42,12 @@ def chooseTeam(excludeTeam=None):
     lstTeams = ["BYU", "Utah", "Stanford",
                 "UVU", "Tech", "Arizona", "Oklahoma"]
 
-    # remove the excluded team from the list if one was passed in
+     # this part excludes the team entered in the
+    # parameters above for the function
     if excludeTeam is not None:
         lstTeams.remove(excludeTeam)
 
-    # display the team options
+    # # display the list of teams
     print("\nChoose a team: ")
     for iCount in range(len(lstTeams)):
         print(f"{iCount+1}. {lstTeams[iCount]}")
