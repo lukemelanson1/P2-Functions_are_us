@@ -18,7 +18,7 @@ def getName():
 def menuDisplay():
     while True:
         # display the menu options
-        print("---Menu---")
+        print("\n---Menu---")
         print("1. Display and pick teams")
         print("2. Play a game")
         print("3. Display final results")
@@ -31,7 +31,7 @@ def menuDisplay():
             else:
                 print("Please enter a number between 1 and 3.")
         except ValueError:
-            print("Invalid input. Please enter a number 1-3.")
+            print("\nInvalid input. Please enter a number 1-3.")
 
 # Luke Melanson
 
@@ -132,9 +132,9 @@ iTotalWinsHome = 0
 iTotalLossHome = 0
 dctTeamWL = {"Won Against": [], "Lost Against": []}
 iNumGames = 0
-
+bContinue = True
 # main loop - keeps running until the player chooses to see final results
-while True:
+while bContinue == True:
     user_choice = menuDisplay()
 
     # option 1 - pick home team and opponent
@@ -167,4 +167,4 @@ while True:
     # option 3 - display final results and end the program
     elif user_choice == 3:
         display_record(sPlayerName, sHomeTeam, dctTeamWL, iTotalWinsHome, iTotalLossHome, iNumGames)
-        break
+        bContinue = False
