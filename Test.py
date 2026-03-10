@@ -19,7 +19,7 @@ def menuDisplay():
     while True:
         # display the menu options
         print("---Menu---")
-        print("1. Choose opponent")
+        print("1. Display and pick teams")
         print("2. Play a game")
         print("3. Display final results")
         try:
@@ -33,30 +33,31 @@ def menuDisplay():
         except ValueError:
             print("Invalid input. Please enter a number 1-3.")
 
-# Luke Melanson 
+# Luke Melanson
 
 # FUNCTION 3: Display list of teams and return the chosen team
 # excludeTeam parameter removes the home team from the list when picking an opponent
-def chooseTeam(excludeTeam=None):
-    # list of available teams
-    lstTeams = ["BYU", "Utah", "Stanford",
-                "UVU", "Tech", "Arizona", "Oklahoma"]
+def chooseTeam(excludeTeam = None) :
 
-     # this part excludes the team entered in the
+    # list of teams available
+    lstTeams = ["BYU","Utah","Stanford",
+    "UVU","Tech","Arizona","Oklahoma"]
+
+    # this part excludes the team entered in the
     # parameters above for the function
-    if excludeTeam is not None:
+    if excludeTeam is not None : 
         lstTeams.remove(excludeTeam)
 
-    # # display the list of teams
+    # display the list of teams
     print("\nChoose a team: ")
-    for iCount in range(len(lstTeams)):
+    for iCount in range(len(lstTeams)) :
         print(f"{iCount+1}. {lstTeams[iCount]}")
 
-    # get the user's choice and return the team name
+    # selection and return
     iChoice = int(input("\nEnter the number of your choice: "))
     return lstTeams[iChoice - 1]
 
-# Reece Bunnage 
+# Reece Bunnage
 
 # FUNCTION 4: Play a game between two teams and return W or L
 def play_game(sHomeTeam, sAwayTeam):
@@ -120,12 +121,8 @@ def display_record(sPlayerName, sHomeTeam, dctTeamWL, iTotalWinsHome, iTotalLoss
 # get the player's name and store it for use throughout the program
 sPlayerName = getName()
 
-# pick the home team once at the start of the season
-print("\nChoose YOUR home team for the season:")
-sHomeTeam = chooseTeam()
-print(f"\nYour team: {sHomeTeam}\n")
-
 # initialize opponent, win/loss tracking variables, and game counter
+sHomeTeam = None
 sAwayTeam = None
 iTotalWinsHome = 0
 iTotalLossHome = 0
@@ -136,13 +133,22 @@ iNumGames = 0
 while True:
     user_choice = menuDisplay()
 
-    # option 1 - pick a new opponent for the next game
+    # option 1 - pick home team and opponent
     if user_choice == 1:
+        # running the func twice to choose two teams
+        # important, the second time should elim sHomeTeam from lstTeams
+        sHomeTeam = chooseTeam()
         sAwayTeam = chooseTeam(sHomeTeam)
-        print(f"\nOpponent: {sAwayTeam}\n")
+        # prints
+        print(f"\nHome team has selected: {sHomeTeam}")
+        print(f"Away team has selected: {sAwayTeam}\n")
 
     # option 2 - play a game and track the result
     elif user_choice == 2:
+        # make sure an opponent has been chosen first
+        if sAwayTeam is None:
+            print("\nPlease choose an opponent first (option 1).")
+            continue
         print(f"\n{sPlayerName}'s {sHomeTeam} vs {sAwayTeam}")
         result = play_game(sHomeTeam, sAwayTeam)
         iNumGames += 1
