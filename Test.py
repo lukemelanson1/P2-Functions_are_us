@@ -104,17 +104,16 @@ def display_record(sPlayerName, sHomeTeam, dctTeamWL, iTotalWinsHome, iTotalLoss
     print(f"\nFinal season record: {iTotalWinsHome} - {iTotalLossHome}")
 
     # calculate win percentage and display performance message
-    try:
-        if iNumGames > 0:
-            fWinPercent = iTotalWinsHome / iNumGames
-            if fWinPercent >= 0.75:
-                print("Qualified for the NCAA Soccer Tournament!")
-            elif fWinPercent >= 0.5:
-                print("You had a good season.")
-            else:
-                print("Your team needs to practice!")
-    except ZeroDivisionError:
-        print("No games played, so no performance to evaluate.")
+   
+    if iNumGames > 0:
+        fWinPercent = iTotalWinsHome / iNumGames
+        if fWinPercent >= 0.75:
+            print("Qualified for the NCAA Soccer Tournament!")
+        elif fWinPercent >= 0.5:
+            print("You had a good season.")
+        else:
+            print("Your team needs to practice!")
+    
 
     # closing message using player name
     print(f"\nThanks for playing, {sPlayerName}!")
@@ -166,5 +165,8 @@ while bContinue == True:
 
     # option 3 - display final results and end the program
     elif user_choice == 3:
+        if iNumGames == 0:
+            print("\nPlease pick teams and play a game first!")
+            continue
         display_record(sPlayerName, sHomeTeam, dctTeamWL, iTotalWinsHome, iTotalLossHome, iNumGames)
         bContinue = False
