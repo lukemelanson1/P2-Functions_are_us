@@ -1,18 +1,21 @@
+#Xander Green, Luke Melanson, Reece Bunnage
+# Soccer Season Simulator Group Project
 
+# Xander Green stuff goes here!
 
-# X man Green stuf go here !
-
+#function 1 - Get name and welcome message
 def getName() :
     name = input("What is your name? ")
     print(f"Welcome {name} to the season. Your team will play a certain number of games and based on your wins/losses you will be qualified to be in the tournament. ")
     return name
 
+#function 2 - Display Menu
 def menuDisplay():
     while True:
         print("---Menu---")
         print("1. Display and pick teams")
         print("2. Play a game")
-        print("Display final results")
+        print("Display final results") #this line should have 3 listed
 
         try:
             choice = int(input("Enter your choice (1-3): "))
